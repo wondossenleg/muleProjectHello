@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:email="http://www.mulesoft.org/schema/mule/email" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/email http://www.mulesoft.org/schema/mule/email/current/mule-email.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a491b4b3-388a-42ff-b1d6-7cc63d55f749" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<email:smtp-config name="Email_SMTP" doc:name="Email SMTP" doc:id="080d55c8-b460-4d86-a79b-7fd4809c6d4b" >
+		<email:smtp-connection host="smtp.gmail.com" port="587" user="wendossenleg@gmail.com" password="Yonas1987$" >
+			<email:properties >
+				<email:property key="mail.smtp.starttls.enable" value="true" />
+			</email:properties>
+		</email:smtp-connection>
+	</email:smtp-config>
+	<flow name="email_smtp_2Flow" doc:id="158141e2-6333-4786-9c21-8cc933c71d43" >
+		<http:listener doc:name="Listener" doc:id="685c0089-f623-4337-89f5-89927697a330" config-ref="HTTP_Listener_config" path="/mail"/>
+		<email:send doc:id="69920875-98bc-4ee6-bda3-3d31a9e4a4b1" config-ref="Email_SMTP" fromAddress="wendossenleg@gmail.com" subject="my SMTP">
+			<email:to-addresses >
+				<email:to-address value="wendossenleg@gmail.com" />
+			</email:to-addresses>
+		</email:send>
+		<set-payload value="#[payload]" doc:name="Set Payload" doc:id="1008e602-c7e8-46fa-bf1c-9a1435ac6c51" />
+	</flow>
+</mule>

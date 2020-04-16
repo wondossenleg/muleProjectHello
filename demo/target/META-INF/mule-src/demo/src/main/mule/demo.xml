@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="6b1c35b9-9de3-45f3-ba51-66bd1683467e" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="demoFlow" doc:id="aa3ac1c3-6ab8-474b-a7a7-f0a0ae9fa95b" >
+		<http:listener doc:name="/Get helloworld" doc:id="cf1df0e4-8dde-4279-8f85-f36e7d6c3177" config-ref="HTTP_Listener_config" path="/helloworld"/>
+		<logger level="INFO" doc:name="Logger" doc:id="a5f183c7-1fba-4170-aefb-d5e925edc7aa" message='"Demo loger invoked"'/>
+		<set-variable value="10" doc:name="Set Variable" doc:id="2a336108-9054-489b-888e-5a4bccdda398" variableName="var1"/>
+		<logger level="INFO" doc:name="Logger" doc:id="3883ed39-cfd5-4c6b-8dae-53f6b318b053" message="This is my second logger step"/>
+	</flow>
+</mule>
