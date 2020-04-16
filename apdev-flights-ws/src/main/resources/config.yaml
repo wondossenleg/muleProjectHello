@@ -1,0 +1,9 @@
+ host: "training4-american-api-{lastname}.{region}.cloudhub.io"
+  port: "80"
+  basepath: "/"
+  protocol: "HTTP"
+  client_id:
+  client_secret:
+  "d1374b15c6864c3682ddbed2a247a826
+  "
+  "4a87fe7e2e43488c927372AEF981F066"
